@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - aws ecr get-login-password --region region | docker login --username AWS --password-stdin $DKR_ENDPOINT
+      - BUILD_NUMBER=
+
+  build:
+    commands:
+      - docker build -t app-image .
+      - docker tag $DKR_ENDPOINT/app-image:latest
+      - docker tag $DKR_ENDPOINT/app-image:$CODEBUILD_BUILD_NUMBER
+  post_build:
+    commands:
+      - docker push $DKR_ENDPOINT/app-image:latest
+      - docker push $DKR_ENDPOINT/app-image:$CODEBUILD_BUILD_NUMBER
