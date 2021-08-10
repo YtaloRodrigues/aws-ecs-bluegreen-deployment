@@ -4,7 +4,6 @@ phases:
   pre_build:
     commands:
       - aws ecr get-login-password --region region | docker login --username AWS --password-stdin $DKR_ENDPOINT
-      - BUILD_NUMBER=
 
   build:
     commands:
