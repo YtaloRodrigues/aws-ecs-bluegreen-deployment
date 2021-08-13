@@ -16,7 +16,7 @@ phases:
     commands:
       - docker push $DKR_ENDPOINT/app-image:latest
       - docker push $DKR_ENDPOINT/app-image:$CODEBUILD_BUILD_NUMBER
-      - printf '[{"name":"app-container","imageUri":"%s"}]' $DKR_ENDPOINT/app-image:latest > imageDefinitions.json
+      - printf '[{"name":"ytim-container","imageUri":"%s"}]' $DKR_ENDPOINT/app-image:latest > imageDefinitions.json
       - printf '[{"ImageUri":"%s"}]' $DKR_ENDPOINT/app-image:latest > imageDetail.json
 
 artifacts:
